@@ -310,15 +310,31 @@ const FantasyQuiz = () => {
     const [selected, setSelected] = useState(null);
     const [questionIndex, setQuestionIndex] = useState(1);
 
-    // Function to fetch quiz data from API
     const fetchQuizData = async (index) => {
+        console.log(`Starting fetch request for todo ${index}`);
         try {
-            const response = await fetch(`https://your-api-endpoint.com/quiz/${index}`);
+            const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${index}`, {
+                mode: 'cors', // Ensure CORS mode is enabled
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log('Fetch response received:', response);
             if (!response.ok) {
-                throw new Error('Network response was not ok.');
+                throw new Error(`Network response was not ok: ${response.statusText}`);
             }
             const data = await response.json();
-            setQuizData(data); // Update quizData state with fetched data
+            console.log('Fetched data:', data); // Log the fetched data
+            
+            // Create mock options for the quiz
+            const options = [
+                { id: 1, name: 'Option 1', value: 'A' },
+                { id: 2, name: 'Option 2', value: 'B' },
+                { id: 3, name: 'Option 3', value: 'C' },
+                { id: 4, name: 'Option 4', value: 'D' },
+            ];
+
+            setQuizData({ ...data, options }); // Assuming data has quiz data structure
         } catch (error) {
             console.error('Error fetching quiz data:', error);
             alert('There was an error fetching quiz data. Please try again later.');
@@ -326,15 +342,13 @@ const FantasyQuiz = () => {
     };
 
     useEffect(() => {
-        fetchQuizData(questionIndex); // Fetch quiz data for initial question
+        fetchQuizData(questionIndex); // Call the fetch function when the component mounts
     }, [questionIndex]); // Fetch new question when questionIndex changes
 
-    // Function to handle option selection
     const handleSelect = (optionId) => {
         setSelected(optionId);
     };
 
-    // Function to handle continue to the next question
     const handleContinue = () => {
         if (selected !== null) {
             setSelected(null); // Reset selected option
@@ -342,12 +356,10 @@ const FantasyQuiz = () => {
         }
     };
 
-    // Render loading if quizData is null (initial loading state)
     if (!quizData) {
         return <div>Loading...</div>;
     }
 
-    // Render the quiz UI once quizData is fetched
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100">
             <div className="bg-[#EDE8E3] rounded-lg shadow-lg p-6 w-full max-w-sm">
@@ -361,7 +373,7 @@ const FantasyQuiz = () => {
                         <div className="bg-green-500 h-1 rounded-full" style={{ width: '20%' }}></div>
                     </div>
                 </div>
-                <h2 className="text-md font-semibold mb-4">{quizData.question}</h2>
+                <h2 className="text-md font-semibold mb-4">{quizData.title}</h2>
                 <div className="space-y-3">
                     {quizData.options.map(option => (
                         <button
@@ -371,7 +383,8 @@ const FantasyQuiz = () => {
                                 selected === option.id ? 'bg-blue-50 border-blue-500' : 'bg-gray-50 border-gray-200'
                             }`}
                         >
-                            <span>{option.text}</span>
+                            <span>{option.name}</span>
+                            <span className="font-medium">{option.value}</span>
                         </button>
                     ))}
                 </div>
