@@ -75,7 +75,7 @@ const SignUp = () => {
 
     const collectData =async () => {
         console.warn(name, email, password);
-        let result = await fetch('http://localhost:5001/Signup',{
+        let result = await fetch('https://your-vercel-app-url.vercel.app/api/Signup',{
             method:'post',
             body: JSON.stringify({name, email, password}),
             headers:{
