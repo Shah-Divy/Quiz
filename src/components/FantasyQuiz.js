@@ -283,7 +283,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ResultsModal from './ResultsModel'; // Make sure the import path is correct
 
-const FantasyQuiz = () => {
+const FantasyQuiz = ({ userName }) => {
     const { questionIndexParam } = useParams();
     const navigate = useNavigate();
     const questionIndex = parseInt(questionIndexParam) || 0;
@@ -414,6 +414,7 @@ const FantasyQuiz = () => {
 
             {showResults && (
                 <ResultsModal
+                    userName={userName}
                     correctAnswers={correctAnswers}
                     totalQuestions={totalQuestions}
                     onClose={closeResultsModal}
