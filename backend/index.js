@@ -69,6 +69,8 @@
 const express = require('express');
 const cors = require('cors');
 require('./db/config');
+require('dotenv').config()
+console.log(process.env)
 const User = require('./db/User');
 const Result = require('./db/Result');
 
