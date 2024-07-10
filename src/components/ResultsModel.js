@@ -63,24 +63,24 @@ const ResultsModal = ({ userName, correctAnswers, totalQuestions, onClose }) => 
     const navigate = useNavigate();
     const score = correctAnswers * 10; // Example score calculation
 
-    const saveResults = async () => {
-        try {
-            const response = await fetch('http://localhost:5001/saveResults', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userName, correctAnswers, totalQuestions, score }),
-            });
-            const data = await response.json();
-            console.log('Results saved:', data);
-        } catch (error) {
-            console.error('Error saving results:', error);
-        }
-    };
+    // const saveResults = async () => {
+    //     try {
+    //         const response = await fetch('http://localhost:5001/saveResults', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({ userName, correctAnswers, totalQuestions, score }),
+    //         });
+    //         const data = await response.json();
+    //         console.log('Results saved:', data);
+    //     } catch (error) {
+    //         console.error('Error saving results:', error);
+    //     }
+    // };
 
     const handleOkayClick = () => {
-        saveResults();
+       // saveResults();
         onClose();
         navigate('/'); // Redirect to the homepage
     };

@@ -5,11 +5,17 @@
 //     correctAnswers: Number,
 //     totalQuestions: Number,
 //     score: Number,
+//     selectedAnswers: [
+//         {
+//             questionId: String,
+//             selectedOption: String,
+//             isCorrect: Boolean
+//         }
+//     ],
 //     createdAt: { type: Date, default: Date.now },
 // });
 
 // module.exports = mongoose.model('Result', resultSchema);
-
 
 
 const mongoose = require('mongoose');
@@ -19,8 +25,14 @@ const resultSchema = new mongoose.Schema({
     correctAnswers: Number,
     totalQuestions: Number,
     score: Number,
+    selectedAnswers: [
+        {
+            questionId: String,
+            selectedOption: String,
+            isCorrect: Boolean
+        }
+    ],
     createdAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('Result', resultSchema);
-

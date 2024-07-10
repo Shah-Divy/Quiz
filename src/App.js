@@ -82,11 +82,15 @@ const Home = ({ userName }) => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
-            {userName && <h1 className="text-2xl mb-16 ml-40">Welcome, {userName}!</h1>}
+        <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
+            {userName && (
+                <div className="mb-4">
+                    <h1 className="text-2xl">Welcome, {userName}!</h1>
+                </div>
+            )}
             <button
                 onClick={handleClick}
-                className='flex justify-center items-center w-80 py-2 bg-teal-700 text-white text-xl rounded-lg hover:bg-teal-800 transition'
+                className="w-80 py-2 bg-teal-700 text-white text-xl rounded-lg hover:bg-teal-800 transition"
             >
                 Welcome to the Fantasy Quiz!
             </button>

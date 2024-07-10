@@ -1,3 +1,5 @@
+
+
 // import React, { useEffect, useState } from 'react';
 
 // const ResultsTable = () => {
@@ -48,6 +50,7 @@
 
 
 
+
 import React, { useEffect, useState } from 'react';
 
 const ResultsTable = () => {
@@ -57,6 +60,9 @@ const ResultsTable = () => {
         const fetchResults = async () => {
             try {
                 const response = await fetch('http://localhost:5001/results');
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
                 const data = await response.json();
                 setResults(data);
             } catch (error) {
@@ -77,6 +83,7 @@ const ResultsTable = () => {
                         <th className="py-2 px-4 border-b">Correct Answers</th>
                         <th className="py-2 px-4 border-b">Total Questions</th>
                         <th className="py-2 px-4 border-b">Score</th>
+                        <th className="py-2 px-4 border-b">Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,6 +93,18 @@ const ResultsTable = () => {
                             <td className="py-2 px-4 border-b text-center">{result.correctAnswers}</td>
                             <td className="py-2 px-4 border-b text-center">{result.totalQuestions}</td>
                             <td className="py-2 px-4 border-b text-center">{result.score}</td>
+                            <td className="py-2 px-4 border-b text-center">
+                                <details>
+                                    <summary>View Details</summary>
+                                    <ul>
+                                        {result.selectedAnswers.map((answer, answerIndex) => (
+                                            <li key={answerIndex}>
+                                                Question ID: {answer.questionId}, Selected Option: {answer.selectedOption}, Correct: {answer.isCorrect ? 'Yes' : 'No'}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </details>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
