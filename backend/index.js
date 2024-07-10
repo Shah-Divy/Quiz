@@ -74,6 +74,14 @@ const Result = require('./db/Result');
 
 const app = express();
 
+app.use((req, res, next) => {
+    res.setTimeout(120000, () => {
+      console.log('Request has timed out.');
+      res.send(504);
+    });
+    next();
+  });
+
 app.use(express.json());
 app.use(cors());
 
