@@ -437,6 +437,26 @@ app.post('/signup', async (req, res) => {
     }
 });
 
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (email && password) {
+            const user = await User.findOne({ email, password }).select('-password');
+            if (user) {
+                res.send(user);
+            } else {
+                res.status(404).json({ result: 'No User Found' });
+            }
+        } else {
+            res.status(400).json({ result: 'Invalid input' });
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).json({ message: 'Error during login', error });
+    }
+});
+
 app.post('/admin', async (req, res) => {
     try {
         const { email, password } = req.body;
