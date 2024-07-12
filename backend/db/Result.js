@@ -21,7 +21,7 @@
 const mongoose = require('mongoose');
 
 const resultSchema = new mongoose.Schema({
-    userName: { type: String, required: true },
+    userEmail: { type: String, required: true },
     correctAnswers: Number,
     totalQuestions: Number,
     score: Number,

@@ -134,8 +134,8 @@ app.post('/admin', async (req, res) => {
 
 app.post('/saveResults', async (req, res) => {
     try {
-        const { userName, correctAnswers, totalQuestions, score, selectedAnswers } = req.body;
-        const result = new Result({ userName, correctAnswers, totalQuestions, score, selectedAnswers });
+        const { userEmail, correctAnswers, totalQuestions, score, selectedAnswers } = req.body;
+        const result = new Result({ userEmail, correctAnswers, totalQuestions, score, selectedAnswers });
         const savedResult = await result.save();
         res.status(201).json({ message: 'Results saved successfully', savedResult });
     } catch (error) {
