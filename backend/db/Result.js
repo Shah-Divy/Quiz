@@ -37,7 +37,6 @@
 // });
 
 // module.exports = mongoose.model('Result', resultSchema);
-
 const mongoose = require('mongoose');
 
 const resultSchema = new mongoose.Schema({
