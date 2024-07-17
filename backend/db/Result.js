@@ -32,6 +32,7 @@ const resultSchema = new mongoose.Schema({
             isCorrect: Boolean
         }
     ],
+    elapsedTime: { type: String, required: true }, // New field
     createdAt: { type: Date, default: Date.now },
 });
 
