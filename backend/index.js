@@ -151,7 +151,7 @@ app.post('/admin', async (req, res) => {
 //     }
 // });
 // Save results route
-app.post('/saveResult', async (req, res) => {
+app.post('/saveResults', async (req, res) => {
     try {
         const { userEmail, correctAnswers, totalQuestions, score, selectedAnswers, elapsedTime } = req.body; // Capture elapsedTime
         const result = new Result({ userEmail, correctAnswers, totalQuestions, score, selectedAnswers, elapsedTime }); // Include elapsedTime
