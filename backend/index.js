@@ -150,7 +150,7 @@ app.post('/admin', async (req, res) => {
 //         res.status(500).json({ message: 'Error saving results', error });
 //     }
 // });
-app.post('/saveResults', async (req, res) => {
+app.post('/saveResult', async (req, res) => {
     try {
         const { userEmail, correctAnswers, totalQuestions, score, selectedAnswers, elapsedTime } = req.body;
 
