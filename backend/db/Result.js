@@ -46,13 +46,13 @@ const resultSchema = new mongoose.Schema({
     totalQuestions: Number,
     score: Number,
     timePlayed: { type: Date, default: Date.now },
-    elapsedTime: Number, // in seconds
+    elapsedTime: Number, // Add elapsedTime field
     selectedAnswers: [
-        {
-            questionId: String,
-            selectedOption: String,
-            isCorrect: Boolean
-        }
+      {
+        questionId: String,
+        selectedOption: String,
+        isCorrect: Boolean
+      }
     ]
 });
 
