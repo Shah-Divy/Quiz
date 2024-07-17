@@ -32,7 +32,7 @@ const resultSchema = new mongoose.Schema({
             isCorrect: Boolean
         }
     ],
-    elapsedTime: { type: String, required: true }, // Define elapsedTime as a String type
+    elapsedTime: { type: Number, required: true }, // Define elapsedTime as a String type
     createdAt: { type: Date, default: Date.now },
 });
 
