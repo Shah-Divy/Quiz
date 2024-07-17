@@ -18,23 +18,21 @@
 
 // module.exports = mongoose.model('Result', resultSchema);
 
-
 const mongoose = require('mongoose');
 
 const resultSchema = new mongoose.Schema({
     userEmail: { type: String, required: true },
-    correctAnswers: { type: Number, required: true },
-    totalQuestions: { type: Number, required: true },
-    score: { type: Number, required: true },
+    correctAnswers: Number,
+    totalQuestions: Number,
+    score: Number,
     selectedAnswers: [
         {
-            questionId: { type: String, required: true },
-            selectedOption: { type: String, required: true },
-            isCorrect: { type: Boolean, required: true }
+            questionId: String,
+            selectedOption: String,
+            isCorrect: Boolean
         }
     ],
-    quizCategory: { type: String, required: true },
-    elapsedTime: { type: String, required: true }, // New field
+    elapsedTime: { type: String, required: true }, // Define elapsedTime as a String type
     createdAt: { type: Date, default: Date.now },
 });
 
