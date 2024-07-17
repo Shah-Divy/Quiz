@@ -150,32 +150,17 @@ app.post('/admin', async (req, res) => {
 //         res.status(500).json({ message: 'Error saving results', error });
 //     }
 // });
-// Save results route
-app.post('/submitQuiz', async (req, res) => {
+app.post('/saveResults', async (req, res) => {
     try {
-      const { userEmail, correctAnswers, totalQuestions, score, startTime, selectedAnswers } = req.body;
-  
-      // Calculate elapsed time in seconds
-      const endTime = moment();
-      const start = moment(startTime);
-      const elapsedTime = moment.duration(endTime.diff(start)).asSeconds();
-  
-      const newResult = new Result({
-        userEmail,
-        correctAnswers,
-        totalQuestions,
-        score,
-        elapsedTime,
-        selectedAnswers
-      });
-  
-      await newResult.save();
-      res.status(201).json({ message: 'Quiz results saved successfully' });
+        const { userEmail, correctAnswers, totalQuestions, score, selectedAnswers, timePlayed, elapsedTime } = req.body;
+        const result = new Result({ userEmail, correctAnswers, totalQuestions, score, selectedAnswers, timePlayed, elapsedTime });
+        const savedResult = await result.save();
+        res.status(201).json({ message: 'Results saved successfully', savedResult });
     } catch (error) {
-      res.status(500).json({ message: 'Error saving quiz results', error });
+        console.error('Error saving results:', error);
+        res.status(500).json({ message: 'Error saving results', error });
     }
-  });
-
+});
 
 
 // Get all results route
