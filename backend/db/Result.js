@@ -21,19 +21,18 @@
 const mongoose = require('mongoose');
 
 const resultSchema = new mongoose.Schema({
-    userEmail: { type: String, required: true },
+    userEmail: String,
     correctAnswers: Number,
     totalQuestions: Number,
     score: Number,
+    timePlayed: { type: Date, default: Date.now },
+    elapsedTime: Number, // in seconds
     selectedAnswers: [
-        {
-            questionId: String,
-            selectedOption: String,
-            isCorrect: Boolean
-        }
-    ],
-    elapsedTime: { type: Number, required: true }, // Define elapsedTime as a String type
-    createdAt: { type: Date, default: Date.now },
-});
-
+      {
+        questionId: String,
+        selectedOption: String,
+        isCorrect: Boolean
+      }
+    ]
+  });
 module.exports = mongoose.model('Result', resultSchema);
