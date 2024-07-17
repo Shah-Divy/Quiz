@@ -347,6 +347,7 @@ app.post('/saveResults', [
 
     try {
         const { userEmail, correctAnswers, totalQuestions, score, selectedAnswers, quizCategory, elapsedTime } = req.body;
+        console.log('Received data:', req.body); // Check received data
         const result = new Result({ userEmail, correctAnswers, totalQuestions, score, selectedAnswers, quizCategory, elapsedTime });
         const savedResult = await result.save();
         res.status(201).json({ message: 'Results saved successfully', savedResult });
