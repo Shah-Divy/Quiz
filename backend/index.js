@@ -139,21 +139,10 @@ app.post('/admin', async (req, res) => {
 });
 
 // Save results route
-// app.post('/saveResults', async (req, res) => {
-//     try {
-//         const { userEmail, correctAnswers, totalQuestions, score, selectedAnswers } = req.body;
-//         const result = new Result({ userEmail, correctAnswers, totalQuestions, score, selectedAnswers });
-//         const savedResult = await result.save();
-//         res.status(201).json({ message: 'Results saved successfully', savedResult });
-//     } catch (error) {
-//         console.error('Error saving results:', error);
-//         res.status(500).json({ message: 'Error saving results', error });
-//     }
-// });
 app.post('/saveResults', async (req, res) => {
     try {
-        const { userEmail, correctAnswers, totalQuestions, score, selectedAnswers, timePlayed, elapsedTime } = req.body;
-        const result = new Result({ userEmail, correctAnswers, totalQuestions, score, selectedAnswers, timePlayed, elapsedTime });
+        const { userEmail, correctAnswers, totalQuestions, score, selectedAnswers } = req.body;
+        const result = new Result({ userEmail, correctAnswers, totalQuestions, score, selectedAnswers });
         const savedResult = await result.save();
         res.status(201).json({ message: 'Results saved successfully', savedResult });
     } catch (error) {
