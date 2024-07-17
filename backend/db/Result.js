@@ -1,7 +1,7 @@
 // const mongoose = require('mongoose');
 
 // const resultSchema = new mongoose.Schema({
-//     userName: { type: String, required: true },
+//     userEmail: { type: String, required: true },
 //     correctAnswers: Number,
 //     totalQuestions: Number,
 //     score: Number,
@@ -12,6 +12,7 @@
 //             isCorrect: Boolean
 //         }
 //     ],
+//     elapsedTime: { type: String, required: true }, // New field
 //     createdAt: { type: Date, default: Date.now },
 // });
 
@@ -22,16 +23,17 @@ const mongoose = require('mongoose');
 
 const resultSchema = new mongoose.Schema({
     userEmail: { type: String, required: true },
-    correctAnswers: Number,
-    totalQuestions: Number,
-    score: Number,
+    correctAnswers: { type: Number, required: true },
+    totalQuestions: { type: Number, required: true },
+    score: { type: Number, required: true },
     selectedAnswers: [
         {
-            questionId: String,
-            selectedOption: String,
-            isCorrect: Boolean
+            questionId: { type: String, required: true },
+            selectedOption: { type: String, required: true },
+            isCorrect: { type: Boolean, required: true }
         }
     ],
+    quizCategory: { type: String, required: true },
     elapsedTime: { type: String, required: true }, // New field
     createdAt: { type: Date, default: Date.now },
 });
