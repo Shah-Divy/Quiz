@@ -56,7 +56,7 @@ const resultSchema = new mongoose.Schema({
         minutes: { type: Number, required: true },
         seconds: { type: Number, required: true }
     },
-    createdAt: { type: Date, default: Date.now },
+    // createdAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('Result', resultSchema);
