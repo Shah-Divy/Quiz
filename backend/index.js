@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
     res.send('products api running');
 });
 
+app.get('/home', (req, res) => {
+    res.send('Divy backend project');
+});
 // Function to verify reCAPTCHA token
 const verifyRecaptcha = (token) => {
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -150,7 +153,7 @@ app.post('/admin', async (req, res) => {
 //         res.status(500).json({ message: 'Error saving results', error });
 //     }
 // });
-app.post('/saveResult', async (req, res) => {
+app.post('/saveResults', async (req, res) => {
     try {
         const { userEmail, correctAnswers, totalQuestions, score, selectedAnswers, elapsedTime } = req.body;
 
