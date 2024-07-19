@@ -136,8 +136,8 @@ app.post('/admin', async (req, res) => {
             res.status(400).json({ result: 'Invalid input' });
         }
     } catch (error) {
-        console.error('Error during login:', error);
-        res.status(500).json({ message: 'Error during login', error });
+        console.error('Error during Admin Data:', error);
+        res.status(500).json({ message: 'Error during Admin Data', error });
     }
 });
 
